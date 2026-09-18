@@ -1,21 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Amiri, Noto_Sans_SC } from "next/font/google";
+import SiteHeader from "@/components/SiteHeader";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const notoSans = Noto_Sans_SC({
+  variable: "--font-noto-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const amiri = Amiri({
+  variable: "--font-amiri",
+  subsets: ["arabic"],
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Learning Islam",
+  title: "学伊斯兰 · 准则章 25:54",
   description:
-    "A simple app to learn the fundamentals of Islam through short lessons and interactive quizzes.",
+    "从水创造人类，并使人们成为亲属：研读《古兰经》准则章第 54 节。",
 };
 
 export default function RootLayout({
@@ -25,10 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="zh-CN"
+      className={`${notoSans.variable} ${amiri.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className={`${notoSans.className} flex min-h-full flex-col`}>
+        <SiteHeader />
+        {children}
+      </body>
     </html>
   );
 }

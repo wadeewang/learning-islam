@@ -30,23 +30,22 @@ export default function Quiz() {
         return (
           <div
             key={q.id}
-            className="rounded-xl border border-black/10 bg-white p-5 dark:border-white/15 dark:bg-zinc-900"
+            className="rounded-2xl border border-line bg-card p-5 shadow-sm"
           >
-            <p className="mb-4 font-medium text-black dark:text-zinc-50">
+            <p className="mb-4 font-medium">
               {index + 1}. {q.question}
             </p>
             <div className="flex flex-col gap-2">
               {q.options.map((option, optionIndex) => {
                 const isSelected = selected === optionIndex;
                 const isCorrect = optionIndex === q.answerIndex;
-                let stateClass =
-                  "border-black/10 hover:border-emerald-500 dark:border-white/15";
+                let stateClass = "border-line hover:border-teal";
                 if (submitted && isCorrect) {
-                  stateClass = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950";
+                  stateClass = "border-teal bg-teal-soft";
                 } else if (submitted && isSelected && !isCorrect) {
-                  stateClass = "border-red-500 bg-red-50 dark:bg-red-950";
+                  stateClass = "border-red-500 bg-red-50 dark:bg-red-950/40";
                 } else if (!submitted && isSelected) {
-                  stateClass = "border-emerald-500 bg-emerald-50 dark:bg-emerald-950";
+                  stateClass = "border-teal bg-teal-soft";
                 }
                 return (
                   <button
@@ -54,7 +53,7 @@ export default function Quiz() {
                     type="button"
                     onClick={() => select(q.id, optionIndex)}
                     aria-pressed={isSelected}
-                    className={`rounded-lg border px-4 py-2 text-left text-sm transition-colors text-black dark:text-zinc-50 ${stateClass}`}
+                    className={`rounded-lg border px-4 py-2 text-left text-sm transition-colors ${stateClass}`}
                   >
                     {option}
                   </button>
@@ -62,9 +61,7 @@ export default function Quiz() {
               })}
             </div>
             {submitted && (
-              <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
-                {q.explanation}
-              </p>
+              <p className="mt-3 text-sm text-muted">{q.explanation}</p>
             )}
           </div>
         );
@@ -76,26 +73,26 @@ export default function Quiz() {
             type="button"
             disabled={!allAnswered}
             onClick={() => setSubmitted(true)}
-            className="rounded-full bg-emerald-600 px-6 py-2 font-medium text-white transition-colors hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-full bg-teal px-6 py-2 font-medium text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            Submit answers
+            提交答案
           </button>
         ) : (
           <button
             type="button"
             onClick={reset}
-            className="rounded-full border border-black/15 px-6 py-2 font-medium text-black transition-colors hover:bg-black/5 dark:border-white/20 dark:text-zinc-50 dark:hover:bg-white/10"
+            className="rounded-full border border-line px-6 py-2 font-medium transition-colors hover:bg-teal-soft"
           >
-            Try again
+            再测一次
           </button>
         )}
 
         {submitted && (
           <p
             data-testid="quiz-result"
-            className="text-lg font-semibold text-black dark:text-zinc-50"
+            className="text-lg font-semibold"
           >
-            You scored {score} / {quizQuestions.length}
+            得分 {score} / {quizQuestions.length}
           </p>
         )}
       </div>
