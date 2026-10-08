@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Quiz from "@/components/Quiz";
+import { quizQuestions } from "@/lib/quiz";
 
 export default function QuizPage() {
   return (
@@ -13,7 +14,7 @@ export default function QuizPage() {
           回答全部题目后提交，查看得分与讲解。
         </p>
       </div>
-      <Quiz />
+      <Quiz questions={quizQuestions} />
     </div>
   );
 }

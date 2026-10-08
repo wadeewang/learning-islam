@@ -1,17 +1,14 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { quizQuestions, scoreQuiz } from "@/lib/quiz";
+import { scoreQuiz, type QuizQuestion } from "@/lib/quiz";
 
-export default function Quiz() {
+export default function Quiz({ questions }: { questions: QuizQuestion[] }) {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [submitted, setSubmitted] = useState(false);
 
-  const score = useMemo(
-    () => scoreQuiz(quizQuestions, answers),
-    [answers],
-  );
-  const allAnswered = Object.keys(answers).length === quizQuestions.length;
+  const score = useMemo(() => scoreQuiz(questions, answers), [answers, questions]);
+  const allAnswered = Object.keys(answers).length === questions.length;
 
   function select(questionId: number, optionIndex: number) {
     if (submitted) return;
@@ -25,7 +22,7 @@ export default function Quiz() {
 
   return (
     <div className="flex w-full max-w-2xl flex-col gap-6">
-      {quizQuestions.map((q, index) => {
+      {questions.map((q, index) => {
         const selected = answers[q.id];
         return (
           <div
@@ -92,7 +89,7 @@ export default function Quiz() {
             data-testid="quiz-result"
             className="text-lg font-semibold"
           >
-            得分 {score} / {quizQuestions.length}
+            得分 {score} / {questions.length}
           </p>
         )}
       </div>
