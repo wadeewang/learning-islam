@@ -54,6 +54,30 @@ export default function Home() {
             </p>
           </article>
         </section>
+
+        <section className="rounded-3xl border border-line bg-card px-6 py-8 sm:px-10">
+          <p className="text-sm font-medium tracking-wide text-gold">
+            广东乌龙 · 潮州凤凰镇乌岽村
+          </p>
+          <h2 className="mt-2 text-2xl font-semibold">凤凰单丛茶叶</h2>
+          <p className="mt-3 max-w-2xl text-[15px] leading-7 text-muted">
+            「凤凰蛋村茶叶」多半是在说单丛：核心好茶出在乌岽村。单株采、单株做，香型里最出名的是银花香，俗称鸭屎香。
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link
+              href="/lessons/dancong"
+              className="inline-flex h-11 items-center rounded-full bg-teal px-6 font-medium text-white transition-opacity hover:opacity-90"
+            >
+              认识单丛茶
+            </Link>
+            <Link
+              href="/quiz/dancong"
+              className="inline-flex h-11 items-center rounded-full border border-line px-6 font-medium transition-colors hover:bg-teal-soft"
+            >
+              单丛测验
+            </Link>
+          </div>
+        </section>
       </main>
     </div>
   );

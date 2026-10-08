@@ -3,6 +3,7 @@ import Link from "next/link";
 const links = [
   { href: "/", label: "首页" },
   { href: "/lessons/25-54", label: "研读经文" },
+  { href: "/lessons/dancong", label: "单丛茶" },
   { href: "/quiz", label: "测验" },
 ];
 
